@@ -1,3 +1,57 @@
 [gd_scene format=3 uid="uid://jp4dxxxbnsxs"]
 
-[node name="Player" type="Node2D" unique_id=15509467]
+[ext_resource type="Script" uid="uid://cmb3tisxlyxyu" path="res://Assests/sprites/player.gd" id="1_kyqiw"]
+[ext_resource type="Texture2D" uid="uid://cidcpj472c5u8" path="res://Assests/sprites/knight.png" id="1_rpqav"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kyqiw"]
+atlas = ExtResource("1_rpqav")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gntrk"]
+atlas = ExtResource("1_rpqav")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dewec"]
+atlas = ExtResource("1_rpqav")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ixxa"]
+atlas = ExtResource("1_rpqav")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nn08x"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kyqiw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gntrk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dewec")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5ixxa")
+}],
+"loop": true,
+"name": &"待机",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_52ee3"]
+radius = 5.0990195
+
+[node name="Player" type="CharacterBody2D" unique_id=2067022172]
+script = ExtResource("1_kyqiw")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1321912655]
+position = Vector2(0, -12)
+sprite_frames = SubResource("SpriteFrames_nn08x")
+animation = &"待机"
+autoplay = "待机"
+frame_progress = 0.3552517
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1634540714]
+position = Vector2(0, -5)
+shape = SubResource("CircleShape2D_52ee3")
