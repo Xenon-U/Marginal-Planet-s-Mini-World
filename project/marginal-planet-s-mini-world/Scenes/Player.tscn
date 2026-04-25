@@ -43,6 +43,8 @@ animations = [{
 radius = 5.0990195
 
 [node name="Player" type="CharacterBody2D" unique_id=2067022172]
+z_index = 5
+collision_layer = 2
 script = ExtResource("1_kyqiw")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1321912655]
@@ -50,7 +52,7 @@ position = Vector2(0, -12)
 sprite_frames = SubResource("SpriteFrames_nn08x")
 animation = &"待机"
 autoplay = "待机"
-frame_progress = 0.3552517
+frame_progress = 0.7878671
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1634540714]
 position = Vector2(0, -5)
