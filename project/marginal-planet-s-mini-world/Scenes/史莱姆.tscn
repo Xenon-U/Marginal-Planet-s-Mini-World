@@ -50,7 +50,7 @@ script = ExtResource("1_rkdmm")
 sprite_frames = SubResource("SpriteFrames_7n7ro")
 animation = &"待机"
 autoplay = "待机"
-frame_progress = 0.075262204
+frame_progress = 0.9365411
 flip_h = true
 
 [node name="Killzone" parent="." unique_id=1387279349 instance=ExtResource("2_rkdmm")]
