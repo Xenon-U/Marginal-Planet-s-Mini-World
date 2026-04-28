@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://di2uattew56fr"]
+
+[ext_resource type="Texture2D" uid="uid://dospeveoeyed3" path="res://Assests/sprites/platforms.png" id="1_4psy4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rky7x"]
+size = Vector2(32, 8)
+
+[node name="草地平台" type="AnimatableBody2D" unique_id=970283205]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1726179754]
+texture = ExtResource("1_4psy4")
+region_enabled = true
+region_rect = Rect2(16, 0, 32, 9)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=783684154]
+shape = SubResource("RectangleShape2D_rky7x")
+one_way_collision = true
