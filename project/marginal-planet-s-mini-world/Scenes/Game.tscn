@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://b6h2xr20y6gf5" path="res://Scenes/史莱姆.tscn" id="6_7lihs"]
 [ext_resource type="FontFile" uid="uid://b0skkntbsnpc0" path="res://Assests/fonts/PixelOperator8.ttf" id="7_fgofq"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_j5yw3"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fgofq"]
 texture = ExtResource("2_gl6un")
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -177,7 +177,7 @@ texture = ExtResource("2_gl6un")
 
 [sub_resource type="TileSet" id="TileSet_kldst"]
 physics_layer_0/collision_layer = 1
-sources/0 = SubResource("TileSetAtlasSource_j5yw3")
+sources/0 = SubResource("TileSetAtlasSource_fgofq")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_b2bpf"]
 texture = ExtResource("2_gl6un")
