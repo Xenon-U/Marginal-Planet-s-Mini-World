@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://c56jmjqx12sjc" path="res://Scenes/coin.tscn" id="4_kldst"]
 [ext_resource type="PackedScene" uid="uid://hd1qbfterrhy" path="res://Scenes/killzone.tscn" id="5_b2bpf"]
 [ext_resource type="PackedScene" uid="uid://b6h2xr20y6gf5" path="res://Scenes/史莱姆.tscn" id="6_7lihs"]
+[ext_resource type="FontFile" uid="uid://b0skkntbsnpc0" path="res://Assests/fonts/PixelOperator8.ttf" id="7_fgofq"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_j5yw3"]
 texture = ExtResource("2_gl6un")
@@ -439,3 +440,13 @@ position = Vector2(364, -20)
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Plantforms/草地平台2" unique_id=1684429463]
 libraries/ = SubResource("AnimationLibrary_b2bpf")
 autoplay = &"move"
+
+[node name="Label" type="Label" parent="." unique_id=1911958844]
+offset_left = -73.0
+offset_top = -32.0
+offset_right = -7.0
+offset_bottom = -2.0
+theme_override_fonts/font = ExtResource("7_fgofq")
+theme_override_font_sizes/font_size = 8
+text = "JUMP：
+space/Ⓐ "
