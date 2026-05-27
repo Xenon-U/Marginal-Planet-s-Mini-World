@@ -494,8 +494,8 @@ libraries/ = SubResource("AnimationLibrary_b2bpf")
 autoplay = &"move"
 
 [node name="Label" type="Label" parent="." unique_id=1911958844]
-offset_left = -73.0
-offset_top = -32.0
+offset_left = -79.0
+offset_top = -37.0
 offset_right = -7.0
 offset_bottom = -2.0
 theme_override_fonts/font = ExtResource("7_fgofq")
