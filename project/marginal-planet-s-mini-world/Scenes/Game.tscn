@@ -1,6 +1,8 @@
 [gd_scene format=4 uid="uid://cwolpwxtttouh"]
 
+[ext_resource type="Script" uid="uid://undfmlqm0ehc" path="res://game_manager.gd" id="1_2irst"]
 [ext_resource type="PackedScene" uid="uid://jp4dxxxbnsxs" path="res://Scenes/Player.tscn" id="1_iukft"]
+[ext_resource type="FontFile" uid="uid://dkug4nfstir37" path="res://Assests/fonts/PixelOperator8-Bold.ttf" id="2_bf53h"]
 [ext_resource type="Texture2D" uid="uid://cftndcl7l6sqc" path="res://Assests/sprites/world_tileset.png" id="2_gl6un"]
 [ext_resource type="PackedScene" uid="uid://di2uattew56fr" path="res://Scenes/草地平台.tscn" id="3_j5yw3"]
 [ext_resource type="PackedScene" uid="uid://c56jmjqx12sjc" path="res://Scenes/coin.tscn" id="4_kldst"]
@@ -356,6 +358,22 @@ _data = {
 [node name="Game" type="Node2D" unique_id=143244060]
 position = Vector2(-2, 0)
 
+[node name="GameManager" type="Node" parent="." unique_id=2058775124]
+unique_name_in_owner = true
+script = ExtResource("1_2irst")
+
+[node name="ScoreLabel" type="Label" parent="GameManager" unique_id=1555803003]
+offset_left = 2056.0
+offset_top = -14.0
+offset_right = 2171.0
+offset_bottom = 5.0
+theme_override_fonts/font = ExtResource("2_bf53h")
+theme_override_font_sizes/font_size = 8
+text = "You collected
+ x coins"
+horizontal_alignment = 1
+autowrap_mode = 2
+
 [node name="Player" parent="." unique_id=2067022172 instance=ExtResource("1_iukft")]
 
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=1002408032]
@@ -481,6 +499,33 @@ position = Vector2(2132, 30)
 [node name="Coin33" parent="Coins" unique_id=84338629 instance=ExtResource("4_kldst")]
 position = Vector2(2146, 15)
 
+[node name="Coin34" parent="Coins" unique_id=682813617 instance=ExtResource("4_kldst")]
+position = Vector2(901, -83)
+
+[node name="Coin35" parent="Coins" unique_id=1979268295 instance=ExtResource("4_kldst")]
+position = Vector2(924, -83)
+
+[node name="Coin36" parent="Coins" unique_id=237213407 instance=ExtResource("4_kldst")]
+position = Vector2(948, -82)
+
+[node name="Coin37" parent="Coins" unique_id=47597017 instance=ExtResource("4_kldst")]
+position = Vector2(1475, 48)
+
+[node name="Coin38" parent="Coins" unique_id=676639884 instance=ExtResource("4_kldst")]
+position = Vector2(1378, -33)
+
+[node name="Coin39" parent="Coins" unique_id=842329982 instance=ExtResource("4_kldst")]
+position = Vector2(1433, -49)
+
+[node name="Coin40" parent="Coins" unique_id=1086129360 instance=ExtResource("4_kldst")]
+position = Vector2(1489, -33)
+
+[node name="Coin41" parent="Coins" unique_id=223315740 instance=ExtResource("4_kldst")]
+position = Vector2(1730, -48)
+
+[node name="Coin42" parent="Coins" unique_id=694799833 instance=ExtResource("4_kldst")]
+position = Vector2(1774, -47)
+
 [node name="Plantforms" type="Node" parent="." unique_id=1029065614]
 
 [node name="草地平台" parent="Plantforms" unique_id=970283205 instance=ExtResource("3_j5yw3")]
@@ -493,15 +538,26 @@ position = Vector2(364, -20)
 libraries/ = SubResource("AnimationLibrary_b2bpf")
 autoplay = &"move"
 
-[node name="Label" type="Label" parent="." unique_id=1911958844]
-offset_left = -79.0
-offset_top = -37.0
-offset_right = -7.0
-offset_bottom = -2.0
-theme_override_fonts/font = ExtResource("7_fgofq")
-theme_override_font_sizes/font_size = 8
-text = "JUMP：
-space/Ⓐ "
-
 [node name="史莱姆" parent="." unique_id=1132648519 instance=ExtResource("6_7lihs")]
 position = Vector2(535, -5)
+
+[node name="label" type="Node" parent="." unique_id=1414995427]
+
+[node name="移动操作提示" type="Label" parent="label" unique_id=1911958844]
+offset_left = -97.0
+offset_top = -41.0
+offset_right = 10.0
+offset_bottom = -14.0
+theme_override_fonts/font = ExtResource("7_fgofq")
+theme_override_font_sizes/font_size = 8
+text = "←/→to move
+space/Ⓐ  to JUMP "
+
+[node name="Label" type="Label" parent="label" unique_id=2126207286]
+offset_left = 2079.0
+offset_top = -34.0
+offset_right = 2149.0
+offset_bottom = -25.0
+theme_override_fonts/font = ExtResource("7_fgofq")
+theme_override_font_sizes/font_size = 8
+text = "You made it"
