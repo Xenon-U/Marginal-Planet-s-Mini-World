@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://cmb3tisxlyxyu" path="res://Scripts/player.gd" id="1_kyqiw"]
 [ext_resource type="Texture2D" uid="uid://cidcpj472c5u8" path="res://Assests/sprites/knight.png" id="1_rpqav"]
 [ext_resource type="Texture2D" uid="uid://dp6o15xb4ghmd" path="res://Assests/sprites/attack.PNG" id="3_gntrk"]
+[ext_resource type="Script" uid="uid://ww04eh0scmlb" path="res://Scripts/player_hitbox.gd" id="4_5ixxa"]
+[ext_resource type="Script" uid="uid://d0j6xyivfgd0f" path="res://Scripts/health_component.gd" id="4_dewec"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kyqiw"]
 atlas = ExtResource("1_rpqav")
@@ -18,10 +20,6 @@ region = Rect2(64, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5ixxa"]
 atlas = ExtResource("1_rpqav")
-region = Rect2(96, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_i2e8t"]
-atlas = ExtResource("3_gntrk")
 region = Rect2(96, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qidb7"]
@@ -56,13 +54,25 @@ region = Rect2(64, 32, 32, 32)
 atlas = ExtResource("3_gntrk")
 region = Rect2(96, 32, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_avx33"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_i2e8t"]
 atlas = ExtResource("3_gntrk")
 region = Rect2(128, 32, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_rxg2u"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_avx33"]
 atlas = ExtResource("3_gntrk")
 region = Rect2(160, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rxg2u"]
+atlas = ExtResource("3_gntrk")
+region = Rect2(192, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xixlo"]
+atlas = ExtResource("3_gntrk")
+region = Rect2(224, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bfbt0"]
+atlas = ExtResource("3_gntrk")
+region = Rect2(0, 64, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nn08x"]
 atlas = ExtResource("1_rpqav")
@@ -153,9 +163,6 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_i2e8t")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_qidb7")
 }, {
 "duration": 1.0,
@@ -178,16 +185,30 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_c43xd")
+}],
+"loop": false,
+"name": &"攻击1",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i2e8t")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_avx33")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_rxg2u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xixlo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bfbt0")
 }],
-"loop": true,
-"name": &"攻击",
-"speed": 5.0
+"loop": false,
+"name": &"攻击2",
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -248,11 +269,15 @@ animations = [{
 }],
 "loop": true,
 "name": &"跳",
-"speed": 5.0
+"speed": 10.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_52ee3"]
 radius = 5.0990195
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gntrk"]
+radius = 4.9999995
+height = 14.000001
 
 [node name="Player" type="CharacterBody2D" unique_id=2067022172]
 z_index = 5
@@ -262,11 +287,24 @@ script = ExtResource("1_kyqiw")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1321912655]
 position = Vector2(0, -12)
 sprite_frames = SubResource("SpriteFrames_nn08x")
-animation = &"攻击"
+animation = &"攻击1"
 autoplay = "待机"
-frame = 8
-frame_progress = 0.22428049
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1634540714]
 position = Vector2(0, -5)
 shape = SubResource("CircleShape2D_52ee3")
+
+[node name="Hitbox" type="Area2D" parent="." unique_id=947258593 groups=["player_hitbox"]]
+collision_layer = 2
+monitoring = false
+script = ExtResource("4_5ixxa")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=96130855]
+position = Vector2(9, -7)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_gntrk")
+
+[node name="HealthComponent" type="Node" parent="." unique_id=767286700]
+script = ExtResource("4_dewec")
+
+[connection signal="body_entered" from="Hitbox" to="Hitbox" method="_on_body_entered"]

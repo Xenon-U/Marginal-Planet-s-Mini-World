@@ -534,13 +534,21 @@ position = Vector2(1774, -47)
 
 [node name="草地平台" parent="Plantforms" unique_id=970283205 instance=ExtResource("3_j5yw3")]
 position = Vector2(32, -40)
+collision_mask = 2
 
 [node name="草地平台2" parent="Plantforms" unique_id=194642634 instance=ExtResource("3_j5yw3")]
 position = Vector2(364, -20)
+collision_mask = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Plantforms/草地平台2" unique_id=1684429463]
 libraries/ = SubResource("AnimationLibrary_b2bpf")
 autoplay = &"move"
+
+[node name="史莱姆3" parent="." unique_id=1625489499 instance=ExtResource("6_7lihs")]
+position = Vector2(1073, -5)
+
+[node name="史莱姆2" parent="." unique_id=733996794 instance=ExtResource("6_7lihs")]
+position = Vector2(146, -84)
 
 [node name="史莱姆" parent="." unique_id=1132648519 instance=ExtResource("6_7lihs")]
 position = Vector2(535, -5)

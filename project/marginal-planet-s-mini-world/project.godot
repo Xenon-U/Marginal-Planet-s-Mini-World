@@ -59,6 +59,14 @@ attack={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="地形、平台"
+2d_physics/layer_2="玩家本体"
+2d_physics/layer_3="敌人本体"
+2d_physics/layer_4="玩家攻击判定"
+2d_physics/layer_5="收集物"
+
 [physics]
 
 3d/physics_engine="Jolt Physics"
