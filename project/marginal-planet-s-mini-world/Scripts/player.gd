@@ -15,7 +15,10 @@ func _physics_process(delta: float) -> void:
 	# Handle jump.
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
-
+	
+	#Attack
+	if Input.is_action_just_pressed("attack"):
+		animated_sprite.play("攻击")
 	# 读取玩家输入方向：可以是-1/0/1
 	var direction := Input.get_axis("move_left", "move_right")
 	
@@ -27,6 +30,7 @@ func _physics_process(delta: float) -> void:
 	
 	# 播放角色动画
 	if is_on_floor():
+		
 		if direction == 0:
 			animated_sprite.play("待机")
 		else:
