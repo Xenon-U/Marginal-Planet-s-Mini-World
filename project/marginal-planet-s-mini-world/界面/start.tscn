@@ -3,55 +3,64 @@
 [ext_resource type="Script" uid="uid://4hmroyoyqyu5" path="res://界面/start.gd" id="1_vaexb"]
 [ext_resource type="FontFile" uid="uid://rjmqpctfbhcj" path="res://Assests/暂停面板/PauseMenuResource/ark-pixel-12px-monospaced-zh_cn.ttf" id="2_1grp3"]
 
-[sub_resource type="GDScript" id="GDScript_hmy12"]
-script/source = "extends Button
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-"
-
 [node name="Control" type="Control" unique_id=1668058571]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 0
 script = ExtResource("1_vaexb")
 
-[node name="MarginContainer" type="MarginContainer" parent="." unique_id=55976576]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=210371069]
+custom_minimum_size = Vector2(700, 200)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -350.0
+offset_top = -100.0
+offset_right = 350.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -0.006808781
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=177455873]
-layout_mode = 2
-
-[node name="start" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1993674300]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_1grp3")
-text = "start"
-script = SubResource("GDScript_hmy12")
-
-[node name="option" type="Button" parent="MarginContainer/VBoxContainer" unique_id=2003918819]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_1grp3")
-theme_override_font_sizes/font_size = 16
-text = "option"
-
-[node name="quit" type="Button" parent="MarginContainer/VBoxContainer" unique_id=421084409]
+[node name="start" type="Button" parent="VBoxContainer" unique_id=832239471]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_1grp3")
-text = "quit
+text = "START
 "
 
-[connection signal="pressed" from="MarginContainer/VBoxContainer/start" to="." method="_on_start_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/option" to="." method="_on_option_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/quit" to="." method="_on_quit_pressed"]
+[node name="gameset" type="Button" parent="VBoxContainer" unique_id=1640595627]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_1grp3")
+text = "GAMESET"
+
+[node name="exit" type="Button" parent="VBoxContainer" unique_id=1131860167]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_1grp3")
+text = "EXIT
+"
+
+[node name="Label" type="Label" parent="." unique_id=1242219230]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_top = -200.0
+offset_right = 20.0
+offset_bottom = -177.0
+grow_horizontal = 2
+rotation = -0.00058854464
+theme_override_fonts/font = ExtResource("2_1grp3")
+theme_override_font_sizes/font_size = 49
+text = "Marginal Planet's Mini World"
+
+[connection signal="pressed" from="VBoxContainer/start" to="." method="_on_start_pressed"]

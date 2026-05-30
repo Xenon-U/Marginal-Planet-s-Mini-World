@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Marginal-Planet-s-Mini-World"
-run/main_scene="uid://cwolpwxtttouh"
+run/main_scene="uid://cx117qitwx7db"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
