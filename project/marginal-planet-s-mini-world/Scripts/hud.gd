@@ -58,7 +58,7 @@ func set_health(current: int, max_hp: int):
 	var tween = create_tween()
 	tween.tween_property(fill, "size:x", target_width, 0.2)
 	# 边框跟随填充宽度
-	tween.tween_property(background, "size:x", target_width + BORDER, 0.2)
+	#tween.tween_property(background, "size:x", target_width + BORDER, 0.2)
 
 
 func _on_quick_save_slot_pressed() -> void:
