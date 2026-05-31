@@ -9,6 +9,14 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fd3ox"]
 size = Vector2(12, 14)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_7n7ro"]
+atlas = ExtResource("1_6jhk5")
+region = Rect2(48, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fd3ox"]
+atlas = ExtResource("1_6jhk5")
+region = Rect2(72, 48, 24, 24)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_fyfer"]
 atlas = ExtResource("1_6jhk5")
 region = Rect2(0, 24, 24, 24)
@@ -27,6 +35,17 @@ region = Rect2(72, 24, 24, 24)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_7n7ro"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7n7ro")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fd3ox")
+}],
+"loop": false,
+"name": &"受击",
+"speed": 10.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_fyfer")
@@ -58,9 +77,8 @@ shape = SubResource("RectangleShape2D_fd3ox")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=655287384]
 sprite_frames = SubResource("SpriteFrames_7n7ro")
-animation = &"待机"
+animation = &"受击"
 autoplay = "待机"
-frame_progress = 0.9365411
 flip_h = true
 
 [node name="RayCastLeft" type="RayCast2D" parent="." unique_id=1813526337]
@@ -71,5 +89,11 @@ target_position = Vector2(-7, 0)
 position = Vector2(0, 7)
 target_position = Vector2(8, 0)
 
+[node name="RayCastDown" type="RayCast2D" parent="." unique_id=1178586067]
+target_position = Vector2(0, 20)
+
 [node name="HealthComponent" type="Node" parent="." unique_id=188717189]
 script = ExtResource("1_fyfer")
+
+[node name="HitstunTimer" type="Timer" parent="." unique_id=384428918]
+one_shot = true

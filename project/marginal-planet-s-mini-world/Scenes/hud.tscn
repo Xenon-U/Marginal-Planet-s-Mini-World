@@ -1,0 +1,97 @@
+[gd_scene format=3 uid="uid://bgk7cnjxrxcot"]
+
+[ext_resource type="Script" uid="uid://675q7h1j7icc" path="res://Scripts/hud.gd" id="1_e0onf"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e0onf"]
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fccik"]
+bg_color = Color(0, 0, 0, 0.49019608)
+
+[node name="HUD" type="CanvasLayer" unique_id=1054817224]
+script = ExtResource("1_e0onf")
+
+[node name="HealthBar" type="Control" parent="." unique_id=1921803599]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 230.0
+offset_bottom = 50.0
+
+[node name="Background" type="Panel" parent="HealthBar" unique_id=419751739]
+layout_mode = 0
+offset_right = 210.0
+offset_bottom = 30.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_e0onf")
+
+[node name="Fill" type="ColorRect" parent="HealthBar" unique_id=490386732]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 202.0
+offset_bottom = 22.0
+color = Color(1, 0, 0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="HealthBar/Fill" unique_id=732052284]
+
+[node name="HP" type="Label" parent="HealthBar" unique_id=1998264754]
+layout_mode = 0
+offset_left = 7.0
+offset_right = 47.0
+offset_bottom = 23.0
+text = "HP"
+
+[node name="SavePanel" type="Panel" parent="." unique_id=1807571363]
+visible = false
+offset_left = 200.0
+offset_top = 200.0
+offset_right = 500.0
+offset_bottom = 400.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_fccik")
+
+[node name="Label" type="Label" parent="SavePanel" unique_id=1499446870]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "选择存档位"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SavePanel" unique_id=507693092]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="QuickSaveSlot" type="Button" parent="SavePanel/VBoxContainer" unique_id=303394081]
+layout_mode = 2
+text = "QuickSave"
+
+[node name="SaveSlot1" type="Button" parent="SavePanel/VBoxContainer" unique_id=1031050826]
+layout_mode = 2
+
+[node name="SaveSlot2" type="Button" parent="SavePanel/VBoxContainer" unique_id=1802779313]
+layout_mode = 2
+
+[node name="SaveSlot3" type="Button" parent="SavePanel/VBoxContainer" unique_id=1213281203]
+layout_mode = 2
+
+[node name="CloseButton" type="Button" parent="SavePanel/VBoxContainer" unique_id=2051415904]
+layout_mode = 2
+text = "CLOSE"
+
+[node name="SaveButton" type="Button" parent="." unique_id=805268210]
+offset_left = 1240.0
+offset_top = 14.0
+offset_right = 1266.0
+offset_bottom = 45.0
+text = "💾"
+
+[connection signal="pressed" from="SavePanel/VBoxContainer/QuickSaveSlot" to="." method="_on_quick_save_slot_pressed"]
+[connection signal="pressed" from="SavePanel/VBoxContainer/SaveSlot1" to="." method="_on_save_slot_1_pressed"]
+[connection signal="pressed" from="SavePanel/VBoxContainer/SaveSlot2" to="." method="_on_save_slot_2_pressed"]
+[connection signal="pressed" from="SavePanel/VBoxContainer/SaveSlot3" to="." method="_on_save_slot_3_pressed"]
+[connection signal="pressed" from="SavePanel/VBoxContainer/CloseButton" to="." method="_on_close_button_pressed"]
+[connection signal="pressed" from="SaveButton" to="." method="_on_save_bottom_pressed"]

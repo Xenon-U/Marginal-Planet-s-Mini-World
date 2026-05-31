@@ -37,6 +37,10 @@ theme_override_fonts/font = ExtResource("2_1grp3")
 text = "START
 "
 
+[node name="load" type="Button" parent="VBoxContainer" unique_id=635282580]
+layout_mode = 2
+text = "Load"
+
 [node name="gameset" type="Button" parent="VBoxContainer" unique_id=1640595627]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_1grp3")
@@ -63,4 +67,30 @@ theme_override_fonts/font = ExtResource("2_1grp3")
 theme_override_font_sizes/font_size = 49
 text = "Marginal Planet's Mini World"
 
-[connection signal="pressed" from="VBoxContainer/start" to="." method="_on_start_pressed"]
+[node name="LoadPanel" type="Panel" parent="." unique_id=849472227]
+layout_mode = 0
+offset_left = -349.16934
+offset_top = 21.997162
+offset_right = 350.83066
+offset_bottom = 21.997162
+
+[node name="VBoxContainer" type="VBoxContainer" parent="LoadPanel" unique_id=399347415]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="QuickSaveSlot" type="Button" parent="LoadPanel/VBoxContainer" unique_id=1679720106]
+layout_mode = 2
+
+[node name="SaveSlot1" type="Button" parent="LoadPanel/VBoxContainer" unique_id=1755417691]
+layout_mode = 2
+
+[node name="SaveSlot2" type="Button" parent="LoadPanel/VBoxContainer" unique_id=168217191]
+layout_mode = 2
+
+[node name="SaveSlot3" type="Button" parent="LoadPanel/VBoxContainer" unique_id=1714675032]
+layout_mode = 2
+
+[node name="BackButton" type="Button" parent="LoadPanel/VBoxContainer" unique_id=822392499]
+layout_mode = 2
+text = "Back"

@@ -6,6 +6,14 @@
 [ext_resource type="Script" uid="uid://ww04eh0scmlb" path="res://Scripts/player_hitbox.gd" id="4_5ixxa"]
 [ext_resource type="Script" uid="uid://d0j6xyivfgd0f" path="res://Scripts/health_component.gd" id="4_dewec"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_wosd6"]
+atlas = ExtResource("1_rpqav")
+region = Rect2(64, 192, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hkrn1"]
+atlas = ExtResource("1_rpqav")
+region = Rect2(96, 192, 32, 32)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_kyqiw"]
 atlas = ExtResource("1_rpqav")
 region = Rect2(0, 0, 32, 32)
@@ -144,6 +152,17 @@ region = Rect2(64, 160, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_nn08x"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wosd6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hkrn1")
+}],
+"loop": true,
+"name": &"受击",
+"speed": 10.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_kyqiw")
@@ -287,7 +306,7 @@ script = ExtResource("1_kyqiw")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1321912655]
 position = Vector2(0, -12)
 sprite_frames = SubResource("SpriteFrames_nn08x")
-animation = &"攻击1"
+animation = &"受击"
 autoplay = "待机"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1634540714]
@@ -306,5 +325,9 @@ shape = SubResource("CapsuleShape2D_gntrk")
 
 [node name="HealthComponent" type="Node" parent="." unique_id=767286700]
 script = ExtResource("4_dewec")
+max_health = 15
+
+[node name="HitstunTimer" type="Timer" parent="." unique_id=1391397425]
+one_shot = true
 
 [connection signal="body_entered" from="Hitbox" to="Hitbox" method="_on_body_entered"]
