@@ -82,6 +82,42 @@ region = Rect2(224, 32, 32, 32)
 atlas = ExtResource("3_gntrk")
 region = Rect2(0, 64, 32, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_y6y60"]
+atlas = ExtResource("1_rpqav")
+region = Rect2(0, 224, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vmcrb"]
+atlas = ExtResource("1_rpqav")
+region = Rect2(32, 224, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_teras"]
+atlas = ExtResource("1_rpqav")
+region = Rect2(64, 224, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8p516"]
+atlas = ExtResource("1_rpqav")
+region = Rect2(96, 224, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wpo1r"]
+atlas = ExtResource("1_rpqav")
+region = Rect2(64, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pqity"]
+atlas = ExtResource("1_rpqav")
+region = Rect2(96, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_opqna"]
+atlas = ExtResource("1_rpqav")
+region = Rect2(128, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_00okb"]
+atlas = ExtResource("1_rpqav")
+region = Rect2(160, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6hr71"]
+atlas = ExtResource("1_rpqav")
+region = Rect2(192, 160, 32, 32)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_nn08x"]
 atlas = ExtResource("1_rpqav")
 region = Rect2(0, 64, 32, 32)
@@ -159,7 +195,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_hkrn1")
 }],
-"loop": true,
+"loop": false,
 "name": &"受击",
 "speed": 10.0
 }, {
@@ -231,6 +267,43 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_y6y60")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vmcrb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_teras")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8p516")
+}],
+"loop": false,
+"name": &"死亡",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wpo1r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pqity")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_opqna")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_00okb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6hr71")
+}],
+"loop": false,
+"name": &"翻滚",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_nn08x")
 }, {
 "duration": 1.0,
@@ -296,7 +369,7 @@ radius = 5.0990195
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gntrk"]
 radius = 4.9999995
-height = 14.000001
+height = 16.0
 
 [node name="Player" type="CharacterBody2D" unique_id=2067022172]
 z_index = 5
@@ -306,7 +379,7 @@ script = ExtResource("1_kyqiw")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1321912655]
 position = Vector2(0, -12)
 sprite_frames = SubResource("SpriteFrames_nn08x")
-animation = &"受击"
+animation = &"攻击1"
 autoplay = "待机"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1634540714]

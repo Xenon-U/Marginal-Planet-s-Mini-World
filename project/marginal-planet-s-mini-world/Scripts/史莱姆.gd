@@ -71,6 +71,7 @@ func _on_damage_taken(_amount: int, direction_x: float):
 	is_in_hitstun = false
 	knockback_vel = Vector2.ZERO
 	ray_cast_down.enabled = true
+	animated_sprite.play("待机")   
 
 func _on_enemy_died():
 	print("【史莱姆】死亡")
