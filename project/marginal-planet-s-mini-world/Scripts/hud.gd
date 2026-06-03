@@ -12,8 +12,6 @@ extends CanvasLayer
 @onready var slot3: Button = $SavePanel/VBoxContainer/SaveSlot3
 
 # ---- 死亡界面相关 ----
-# 请确保场景中存在以下结构：
-
 @onready var death_screen: Control = $DeathScreen
 @onready var black_overlay: ColorRect = $DeathScreen/BlackOverlay
 @onready var dead_label: Label = $DeathScreen/YouDiedLabel
@@ -31,16 +29,45 @@ func _ready():
 	fill.size = Vector2(max_width, BAR_HEIGHT)
 	background.size = Vector2(max_width + BORDER, BAR_HEIGHT + BORDER)
 	fill.position = Vector2(BORDER / 2.0, BORDER / 2.0)
-
+	
+	# 关键：设置父容器 HealthBar 的尺寸，否则子节点不可见
+	health_bar.size = background.size
+	
+	# 确保血条有可见颜色
+	fill.color = Color.RED
+	
 	# 存档面板默认隐藏
 	save_panel.hide()
-
+	
 	# 死亡界面默认隐藏
 	death_screen.hide()
 	black_overlay.color.a = 0.0
 	dead_label.hide()
 	retry_button.hide()
+	
+	# 连接重试按钮
 	retry_button.pressed.connect(_on_retry_pressed)
+	
+	# 连接存档按钮（按钮名为 SaveButton）
+	if has_node("SaveButton"):
+		# 假设编辑器中的信号连接到了 _on_save_bottom_pressed，但我们直接在此连接
+		$SaveButton.pressed.connect(_on_save_button_pressed)
+	else:
+		print("警告：未找到 SaveButton 节点，存档按钮无效")
+	
+	# 为 SavePanel 中的按钮连接信号（如果编辑器里已连则跳过，用代码更可靠）
+	# 快速读档按钮
+	var quick_slot = $SavePanel/VBoxContainer/QuickSaveSlot
+	if quick_slot:
+		quick_slot.pressed.connect(_on_quick_save_slot_pressed)
+	# 关闭按钮
+	var close_btn = $SavePanel/VBoxContainer/CloseButton
+	if close_btn:
+		close_btn.pressed.connect(_on_close_button_pressed)
+	# 三个存档槽
+	slot1.pressed.connect(_on_save_slot_1_pressed)
+	slot2.pressed.connect(_on_save_slot_2_pressed)
+	slot3.pressed.connect(_on_save_slot_3_pressed)
 
 # ========== 血条更新 ==========
 func set_health(current: int, max_hp: int):
@@ -53,8 +80,15 @@ func _on_save_button_pressed():
 	update_save_slots()
 	save_panel.show()
 
-func _on_close_pressed():
+func _on_save_bottom_pressed():
+	# 如果编辑器信号连了这个，转调到这里
+	_on_save_button_pressed()
+
+func _on_close_button_pressed():
 	save_panel.hide()
+
+func _on_quick_save_slot_pressed():
+	SaveManager.load_game("quicksave")
 
 func _on_save_slot_1_pressed():
 	SaveManager.save_game("save1")
@@ -79,20 +113,16 @@ func update_save_slots():
 # ========== 死亡序列 ==========
 func start_death_sequence():
 	death_screen.show()
-	# 确保初始状态
 	black_overlay.color.a = 0.0
 	dead_label.hide()
 	retry_button.hide()
-
-	# 2.0秒内屏幕逐渐变黑
+	
 	var tween = create_tween()
 	tween.tween_property(black_overlay, "color:a", 1.0, 2.0)
-	# 黑屏后显示文字和按钮
 	tween.tween_callback(func():
 		dead_label.show()
 		retry_button.show()
 	)
 
 func _on_retry_pressed():
-	# 重新加载当前场景
 	get_tree().reload_current_scene()

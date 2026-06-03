@@ -33,9 +33,10 @@ var white_shader: ShaderMaterial
 var roll_timer: float = 0.0
 var roll_initial_speed: float = 0.0
 var roll_target_speed: float = 0.0
-var post_roll_invincible_timer: float = 0.0   # 翻滚结束后的额外无敌时间
+var post_roll_invincible_timer: float = 0.0
 
 func _ready():
+	
 	collision_layer = 2
 	collision_mask = 1
 	add_to_group("player")
@@ -43,7 +44,7 @@ func _ready():
 	health_component.died.connect(_on_player_died)
 	health_component.damage_taken.connect(_on_damage_taken)
 
-	# 创建白色闪烁着色器
+	# 白色闪白着色器
 	var shader = Shader.new()
 	shader.code = """
 shader_type canvas_item;
@@ -56,11 +57,11 @@ void fragment() {
 	white_shader = ShaderMaterial.new()
 	white_shader.shader = shader
 
-	# 安全连接血量变化信号（避免重复连接）
+	# 安全连接 health_changed 信号
 	if not health_component.health_changed.is_connected(_on_health_changed):
 		health_component.health_changed.connect(_on_health_changed)
 
-	# 获取 HUD 并初始化血条显示
+	# 获取 HUD 引用
 	hud = get_tree().current_scene.get_node("HUD")
 	if hud:
 		_on_health_changed(health_component.current_health, health_component.max_health)
@@ -68,12 +69,20 @@ void fragment() {
 		print("警告：未找到 HUD 节点，血条不会更新")
 
 	print("【玩家】血量:", health_component.current_health, "/", health_component.max_health)
+	print("HUD 引用: ", hud)
+	print("health_changed 已连接: ", health_component.health_changed.is_connected(_on_health_changed))
 
 func _input(_event):
 	if is_dead or is_rolling:
 		return
 
-	# 硬直中允许用翻滚打断
+	# 快速存档/读档
+	if Input.is_action_just_pressed("quicksave"):
+		SaveManager.save_game("quicksave")
+	if Input.is_action_just_pressed("quickload"):
+		SaveManager.load_game("quicksave")
+
+	# 硬直中允许翻滚打断
 	if is_in_hitstun:
 		if Input.is_action_just_pressed("roll"):
 			start_roll()
@@ -108,7 +117,6 @@ func start_attack(combo_level: int):
 		$Hitbox/CollisionShape2D.disabled = true
 
 func start_roll():
-	# 如果正在硬直，先打断硬直
 	if is_in_hitstun:
 		is_in_hitstun = false
 		velocity = Vector2.ZERO
@@ -116,7 +124,7 @@ func start_roll():
 	is_rolling = true
 	is_attacking = false
 	$Hitbox/CollisionShape2D.disabled = true
-	is_invincible = true          # 全程无敌
+	is_invincible = true
 
 	roll_direction = -1 if animated_sprite.flip_h else 1
 	roll_initial_speed = velocity.x
@@ -130,7 +138,7 @@ func take_damage(amount: int, direction_x: float = 0.0):
 	if is_dead:
 		return
 
-	# 翻滚中或翻滚结束后的短暂无敌
+	# 翻滚相关无敌
 	if is_rolling or post_roll_invincible_timer > 0.0:
 		flash_white()
 		if not is_invincible:
@@ -175,16 +183,12 @@ func _on_player_died():
 	is_dead = true
 	print("【玩家】死亡！")
 
-	# 播放死亡动画
 	animated_sprite.play("死亡")
-	# 禁用碰撞体，防止后续物理交互
 	collision_shape.set_deferred("disabled", true)
 	$Hitbox/CollisionShape2D.set_deferred("disabled", true)
 
-	# 短暂等待，让死亡动画播放一段时间（可根据动画时长调整）
 	await get_tree().create_timer(0.5).timeout
 
-	# 调用 HUD 的黑屏+文字序列
 	if not hud:
 		hud = get_tree().current_scene.get_node("HUD")
 	if hud:
@@ -212,16 +216,13 @@ func _physics_process(delta: float) -> void:
 	if is_dead:
 		return
 
-	# 更新翻滚结束后的额外无敌计时器
 	if post_roll_invincible_timer > 0.0:
 		post_roll_invincible_timer -= delta
 		if post_roll_invincible_timer <= 0.0:
 			post_roll_invincible_timer = 0.0
 
-	# ========== 翻滚处理 ==========
 	if is_rolling:
 		roll_timer += delta
-
 		var t = roll_timer / ROLL_DURATION
 		var desired_speed: float
 		if t <= 0.2:
@@ -243,9 +244,9 @@ func _physics_process(delta: float) -> void:
 
 		if roll_timer >= ROLL_DURATION:
 			is_rolling = false
-			is_invincible = false       # 结束无敌
+			is_invincible = false
 			velocity.x = 0
-			post_roll_invincible_timer = 0.1   # 可保留额外保护
+			post_roll_invincible_timer = 0.1
 			if pending_direction != 0:
 				animated_sprite.flip_h = (pending_direction == -1)
 			pending_direction = 0
@@ -253,14 +254,12 @@ func _physics_process(delta: float) -> void:
 		move_and_slide()
 		return
 
-	# ========== 硬直处理 ==========
 	if is_in_hitstun:
 		if not is_on_floor():
 			velocity += get_gravity() * delta
 		move_and_slide()
 		return
 
-	# ========== 正常移动 ==========
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
@@ -297,5 +296,6 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func _on_health_changed(current: int, max_hp: int):
+	print("更新血条: ", current, "/", max_hp)
 	if hud:
 		hud.set_health(current, max_hp)
