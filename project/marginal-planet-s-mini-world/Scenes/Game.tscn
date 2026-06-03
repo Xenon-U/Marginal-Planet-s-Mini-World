@@ -1,6 +1,6 @@
 [gd_scene format=4 uid="uid://cwolpwxtttouh"]
 
-[ext_resource type="Script" uid="uid://undfmlqm0ehc" path="res://game_manager.gd" id="1_2irst"]
+[ext_resource type="Script" path="res://game_manager.gd" id="1_2irst"]
 [ext_resource type="PackedScene" uid="uid://jp4dxxxbnsxs" path="res://Scenes/Player.tscn" id="1_iukft"]
 [ext_resource type="FontFile" uid="uid://dkug4nfstir37" path="res://Assests/fonts/PixelOperator8-Bold.ttf" id="2_bf53h"]
 [ext_resource type="Texture2D" uid="uid://cftndcl7l6sqc" path="res://Assests/sprites/world_tileset.png" id="2_gl6un"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://b6h2xr20y6gf5" path="res://Scenes/史莱姆.tscn" id="6_7lihs"]
 [ext_resource type="FontFile" uid="uid://b0skkntbsnpc0" path="res://Assests/fonts/PixelOperator8.ttf" id="7_fgofq"]
 [ext_resource type="PackedScene" uid="uid://bgk7cnjxrxcot" path="res://Scenes/hud.tscn" id="10_71axn"]
+[ext_resource type="Script" uid="uid://c832yn6st5kgw" path="res://Scenes/teleport_to_scene_2.gd" id="11_dahhg"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fgofq"]
 texture = ExtResource("2_gl6un")
@@ -356,10 +357,14 @@ _data = {
 &"move": SubResource("Animation_kldst")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3so38"]
+size = Vector2(15, 21)
+
 [node name="Game" type="Node2D" unique_id=143244060]
 position = Vector2(-2, 0)
 
 [node name="HUD" parent="." unique_id=540386424 instance=ExtResource("10_71axn")]
+visible = false
 
 [node name="GameManager" type="Node" parent="." unique_id=2058775124]
 unique_name_in_owner = true
@@ -397,6 +402,7 @@ tile_map_data = PackedByteArray("AAD6/wUAAAAAAA8AAAD7/wUAAAAAAA8AAAD8/wUAAAAAAA8
 tile_set = SubResource("TileSet_7lihs")
 
 [node name="Killzone" parent="." unique_id=1387279349 instance=ExtResource("5_b2bpf")]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone" unique_id=1202204349]
 shape = SubResource("WorldBoundaryShape2D_7lihs")
@@ -404,12 +410,15 @@ shape = SubResource("WorldBoundaryShape2D_7lihs")
 [node name="enemy" type="Node" parent="." unique_id=2013333387]
 
 [node name="史莱姆3" parent="enemy" unique_id=1625489499 groups=["enemy"] instance=ExtResource("6_7lihs")]
+visible = false
 position = Vector2(1072, -5)
 
 [node name="史莱姆" parent="enemy" unique_id=1132648519 groups=["enemy"] instance=ExtResource("6_7lihs")]
+visible = false
 position = Vector2(534, -5)
 
 [node name="史莱姆2" parent="enemy" unique_id=733996794 groups=["enemy"] instance=ExtResource("6_7lihs")]
+visible = false
 position = Vector2(145, -85)
 
 [node name="Coins" type="Node" parent="." unique_id=1170061211]
@@ -478,66 +487,86 @@ position = Vector2(2098, 53)
 position = Vector2(2109, 54)
 
 [node name="Coin22" parent="Coins" unique_id=705983397 instance=ExtResource("4_kldst")]
+visible = false
 position = Vector2(2120, 54)
 
 [node name="Coin23" parent="Coins" unique_id=1174034539 instance=ExtResource("4_kldst")]
+visible = false
 position = Vector2(2131, 54)
 
 [node name="Coin24" parent="Coins" unique_id=2138051846 instance=ExtResource("4_kldst")]
+visible = false
 position = Vector2(2145, 49)
 
 [node name="Coin25" parent="Coins" unique_id=1231024516 instance=ExtResource("4_kldst")]
+visible = false
 position = Vector2(2097, 42)
 
 [node name="Coin26" parent="Coins" unique_id=752081736 instance=ExtResource("4_kldst")]
+visible = false
 position = Vector2(2109, 41)
 
 [node name="Coin27" parent="Coins" unique_id=1687654934 instance=ExtResource("4_kldst")]
+visible = false
 position = Vector2(2121, 42)
 
 [node name="Coin28" parent="Coins" unique_id=1190132769 instance=ExtResource("4_kldst")]
+visible = false
 position = Vector2(2133, 42)
 
 [node name="Coin29" parent="Coins" unique_id=619239420 instance=ExtResource("4_kldst")]
 position = Vector2(2146, 38)
 
 [node name="Coin30" parent="Coins" unique_id=649425522 instance=ExtResource("4_kldst")]
+visible = false
 position = Vector2(2162, 15)
 
 [node name="Coin31" parent="Coins" unique_id=1396178720 instance=ExtResource("4_kldst")]
+visible = false
 position = Vector2(2146, 27)
 
 [node name="Coin32" parent="Coins" unique_id=321614839 instance=ExtResource("4_kldst")]
+visible = false
 position = Vector2(2132, 30)
 
 [node name="Coin33" parent="Coins" unique_id=84338629 instance=ExtResource("4_kldst")]
+visible = false
 position = Vector2(2146, 15)
 
 [node name="Coin34" parent="Coins" unique_id=682813617 instance=ExtResource("4_kldst")]
+visible = false
 position = Vector2(901, -83)
 
 [node name="Coin35" parent="Coins" unique_id=1979268295 instance=ExtResource("4_kldst")]
+visible = false
 position = Vector2(924, -83)
 
 [node name="Coin36" parent="Coins" unique_id=237213407 instance=ExtResource("4_kldst")]
+visible = false
 position = Vector2(948, -82)
 
 [node name="Coin37" parent="Coins" unique_id=47597017 instance=ExtResource("4_kldst")]
+visible = false
 position = Vector2(1475, 48)
 
 [node name="Coin38" parent="Coins" unique_id=676639884 instance=ExtResource("4_kldst")]
+visible = false
 position = Vector2(1378, -33)
 
 [node name="Coin39" parent="Coins" unique_id=842329982 instance=ExtResource("4_kldst")]
+visible = false
 position = Vector2(1433, -49)
 
 [node name="Coin40" parent="Coins" unique_id=1086129360 instance=ExtResource("4_kldst")]
+visible = false
 position = Vector2(1489, -33)
 
 [node name="Coin41" parent="Coins" unique_id=223315740 instance=ExtResource("4_kldst")]
+visible = false
 position = Vector2(1730, -48)
 
 [node name="Coin42" parent="Coins" unique_id=694799833 instance=ExtResource("4_kldst")]
+visible = false
 position = Vector2(1774, -47)
 
 [node name="Plantforms" type="Node" parent="." unique_id=1029065614]
@@ -574,3 +603,11 @@ offset_bottom = -25.0
 theme_override_fonts/font = ExtResource("7_fgofq")
 theme_override_font_sizes/font_size = 8
 text = "You made it"
+
+[node name="TeleportToScene2" type="Area2D" parent="." unique_id=484503058]
+position = Vector2(3200, 0)
+script = ExtResource("11_dahhg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TeleportToScene2" unique_id=186996417]
+position = Vector2(-1037.5, 11.5)
+shape = SubResource("RectangleShape2D_3so38")
