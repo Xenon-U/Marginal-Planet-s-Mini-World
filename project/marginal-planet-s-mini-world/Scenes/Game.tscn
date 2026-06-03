@@ -360,7 +360,6 @@ _data = {
 position = Vector2(-2, 0)
 
 [node name="HUD" parent="." unique_id=540386424 instance=ExtResource("10_71axn")]
-visible = false
 
 [node name="GameManager" type="Node" parent="." unique_id=2058775124]
 unique_name_in_owner = true
@@ -610,9 +609,11 @@ OR
 💾in the upper_right corner
 of the screen to save"
 
-[node name="Label" type="Label" parent="label" unique_id=1645260318]
-offset_left = 507.0
-offset_top = -50.0
-offset_right = 597.0
-offset_bottom = -27.0
-text = "Good Luck  "
+[node name="Good luck" type="Label" parent="label" unique_id=1645260318]
+offset_left = 517.0
+offset_top = -42.0
+offset_right = 607.0
+offset_bottom = -19.0
+theme_override_fonts/font = ExtResource("7_fgofq")
+theme_override_font_sizes/font_size = 12
+text = "Good Luck 😋"
