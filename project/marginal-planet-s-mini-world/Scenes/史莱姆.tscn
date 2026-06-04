@@ -77,7 +77,7 @@ shape = SubResource("RectangleShape2D_fd3ox")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=655287384]
 sprite_frames = SubResource("SpriteFrames_7n7ro")
-animation = &"受击"
+animation = &"待机"
 autoplay = "待机"
 flip_h = true
 
