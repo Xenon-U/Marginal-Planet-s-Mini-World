@@ -1,0 +1,98 @@
+[gd_scene format=3 uid="uid://bdb5h43rerp2u"]
+
+[ext_resource type="Script" uid="uid://bej7wtatd3lhb" path="res://界面/pause.gd" id="1_c0lnc"]
+[ext_resource type="Texture2D" uid="uid://bxxbvst0db0v2" path="res://Assests/暂停面板/PauseMenuResource/pause_hover.png" id="2_vsknu"]
+[ext_resource type="Texture2D" uid="uid://crk4ksrrcyicg" path="res://Assests/暂停面板/PauseMenuResource/pause_normal.png" id="3_80urq"]
+[ext_resource type="Texture2D" uid="uid://d1u3fid1dvu7n" path="res://Assests/暂停面板/PauseMenuResource/pause_pressed.png" id="4_5d16t"]
+[ext_resource type="FontFile" uid="uid://rjmqpctfbhcj" path="res://Assests/暂停面板/PauseMenuResource/ark-pixel-12px-monospaced-zh_cn.ttf" id="5_qo8yt"]
+
+[node name="Pause" type="Control" unique_id=1259339767 node_paths=PackedStringArray("pause_panel")]
+custom_minimum_size = Vector2(700, 200)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_top = 10.0
+offset_right = -581.0
+offset_bottom = -417.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_c0lnc")
+pause_panel = NodePath("pausepanel")
+
+[node name="TextureButton" type="TextureButton" parent="." unique_id=2083880611]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -8.0
+offset_bottom = 8.0
+grow_horizontal = 0
+grow_vertical = 2
+focus_mode = 0
+texture_normal = ExtResource("2_vsknu")
+texture_pressed = ExtResource("3_80urq")
+texture_hover = ExtResource("4_5d16t")
+
+[node name="pausepanel" type="Panel" parent="." unique_id=872719489]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 9.0
+offset_top = -1.0
+offset_right = 9.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="pausepanel" unique_id=1190208425]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -73.0
+offset_top = 16.0
+offset_right = 138.0
+offset_bottom = 100.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("5_qo8yt")
+theme_override_font_sizes/font_size = 54
+text = "PAUSED"
+
+[node name="resume" type="Button" parent="pausepanel" unique_id=1024614991]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -81.0
+offset_top = -19.5
+offset_right = 84.0
+offset_bottom = 39.5
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+theme_override_fonts/font = ExtResource("5_qo8yt")
+theme_override_font_sizes/font_size = 26
+text = "RESUME"
+
+[node name="quit" type="Button" parent="pausepanel" unique_id=1555986452]
+layout_mode = 0
+offset_left = 269.0
+offset_top = 197.0
+offset_right = 435.0
+offset_bottom = 252.0
+focus_mode = 0
+theme_override_fonts/font = ExtResource("5_qo8yt")
+theme_override_font_sizes/font_size = 29
+text = "QUIT"
+
+[connection signal="pressed" from="TextureButton" to="." method="pause"]
+[connection signal="pressed" from="pausepanel/resume" to="." method="unpause"]
+[connection signal="pressed" from="pausepanel/quit" to="." method="quit_game"]

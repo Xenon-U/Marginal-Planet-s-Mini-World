@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://b6h2xr20y6gf5" path="res://Scenes/史莱姆.tscn" id="6_7lihs"]
 [ext_resource type="FontFile" uid="uid://b0skkntbsnpc0" path="res://Assests/fonts/PixelOperator8.ttf" id="7_fgofq"]
 [ext_resource type="PackedScene" uid="uid://bgk7cnjxrxcot" path="res://Scenes/hud.tscn" id="10_71axn"]
+[ext_resource type="PackedScene" uid="uid://bdb5h43rerp2u" path="res://界面/pause.tscn" id="11_dahhg"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fgofq"]
 texture = ExtResource("2_gl6un")
@@ -574,3 +575,5 @@ offset_bottom = -25.0
 theme_override_fonts/font = ExtResource("7_fgofq")
 theme_override_font_sizes/font_size = 8
 text = "You made it"
+
+[node name="Pause" parent="." unique_id=1259339767 instance=ExtResource("11_dahhg")]
