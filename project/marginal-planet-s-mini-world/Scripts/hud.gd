@@ -26,48 +26,55 @@ const BAR_HEIGHT = 20
 func _ready():
 	# 血条初始化
 	max_width = min(MAX_BAR_WIDTH, get_tree().root.size.x * SCREEN_MAX_RATIO)
+	health_bar.size = Vector2(max_width + BORDER, BAR_HEIGHT + BORDER)
+	background.size = health_bar.size
+	background.position = Vector2.ZERO
 	fill.size = Vector2(max_width, BAR_HEIGHT)
-	background.size = Vector2(max_width + BORDER, BAR_HEIGHT + BORDER)
 	fill.position = Vector2(BORDER / 2.0, BORDER / 2.0)
-	
-	# 关键：设置父容器 HealthBar 的尺寸，否则子节点不可见
-	health_bar.size = background.size
-	
-	# 确保血条有可见颜色
 	fill.color = Color.RED
-	
+
 	# 存档面板默认隐藏
 	save_panel.hide()
-	
+
 	# 死亡界面默认隐藏
 	death_screen.hide()
 	black_overlay.color.a = 0.0
 	dead_label.hide()
 	retry_button.hide()
-	
-	# 连接重试按钮
+
+	# ========== 强制重新连接所有信号（先断开再连接） ==========
+	# 重试按钮
+	if retry_button.pressed.is_connected(_on_retry_pressed):
+		retry_button.pressed.disconnect(_on_retry_pressed)
 	retry_button.pressed.connect(_on_retry_pressed)
-	
-	# 连接存档按钮（按钮名为 SaveButton）
+
+	# 主存档按钮
 	if has_node("SaveButton"):
-		# 假设编辑器中的信号连接到了 _on_save_bottom_pressed，但我们直接在此连接
+		if $SaveButton.pressed.is_connected(_on_save_button_pressed):
+			$SaveButton.pressed.disconnect(_on_save_button_pressed)
 		$SaveButton.pressed.connect(_on_save_button_pressed)
-	else:
-		print("警告：未找到 SaveButton 节点，存档按钮无效")
-	
-	# 为 SavePanel 中的按钮连接信号（如果编辑器里已连则跳过，用代码更可靠）
+
 	# 快速读档按钮
 	var quick_slot = $SavePanel/VBoxContainer/QuickSaveSlot
 	if quick_slot:
+		if quick_slot.pressed.is_connected(_on_quick_save_slot_pressed):
+			quick_slot.pressed.disconnect(_on_quick_save_slot_pressed)
 		quick_slot.pressed.connect(_on_quick_save_slot_pressed)
-	# 关闭按钮
+
+	# 关闭面板按钮
 	var close_btn = $SavePanel/VBoxContainer/CloseButton
 	if close_btn:
+		if close_btn.pressed.is_connected(_on_close_button_pressed):
+			close_btn.pressed.disconnect(_on_close_button_pressed)
 		close_btn.pressed.connect(_on_close_button_pressed)
-	# 三个存档槽
-	slot1.pressed.connect(_on_save_slot_1_pressed)
-	slot2.pressed.connect(_on_save_slot_2_pressed)
-	slot3.pressed.connect(_on_save_slot_3_pressed)
+
+	# 三个存档槽按钮
+	var slot_funcs = [_on_save_slot_1_pressed, _on_save_slot_2_pressed, _on_save_slot_3_pressed]
+	for i in range(3):
+		var slot = get_node("SavePanel/VBoxContainer/SaveSlot" + str(i+1))
+		if slot.pressed.is_connected(slot_funcs[i]):
+			slot.pressed.disconnect(slot_funcs[i])
+		slot.pressed.connect(slot_funcs[i])
 
 # ========== 血条更新 ==========
 func set_health(current: int, max_hp: int):
