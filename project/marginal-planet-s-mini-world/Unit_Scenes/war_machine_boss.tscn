@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://bx63bbc36vyny"]
+
+[ext_resource type="Script" uid="uid://b3sarv4k4g1em" path="res://Scripts/war_machine_boss.gd" id="1_018yh"]
+
+[node name="WarMachineBoss" type="CharacterBody2D" unique_id=729716493]
+script = ExtResource("1_018yh")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1903332342]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1321670383]
+
+[node name="HealthComponent" type="Node" parent="." unique_id=1614614683]
+
+[node name="DetectionArea" type="Area2D" parent="." unique_id=541053977]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea" unique_id=1688086083]
+
+[node name="AttackHitbox" type="Area2D" parent="." unique_id=1622646406]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackHitbox" unique_id=2081139588]
+disabled = true
+
+[node name="Hurtbox" type="Area2D" parent="." unique_id=107165827]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=367886826]
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=604096458]
+
+[node name="AttackCooldown" type="Timer" parent="." unique_id=1207934334]
+
+[node name="CombatCheckTimer" type="Timer" parent="." unique_id=515018505]
+
+[node name="EnterCombatSound" type="AudioStreamPlayer" parent="." unique_id=486349613]
+
+[node name="ProjectileSpawnPoint" type="Marker2D" parent="." unique_id=1529280735]
