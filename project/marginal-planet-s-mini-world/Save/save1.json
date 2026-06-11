@@ -4,31 +4,31 @@
 			"alive": true,
 			"current_health": 3,
 			"path": "/root/Game/enemy/史莱姆3",
-			"position_x": 1257.13525390625,
-			"position_y": -5.0
+			"position_x": 1471.60327148438,
+			"position_y": 43.0
 		},
 		{
 			"alive": true,
 			"current_health": 3,
 			"path": "/root/Game/enemy/史莱姆",
-			"position_x": 531.13525390625,
+			"position_x": 497.260864257812,
 			"position_y": -5.0
 		},
 		{
 			"alive": true,
 			"current_health": 3,
 			"path": "/root/Game/enemy/史莱姆2",
-			"position_x": 188.135238647461,
-			"position_y": -85.0
+			"position_x": 162.252853393555,
+			"position_y": -82.84375
 		}
 	],
 	"player": {
 		"current_health": 15,
 		"flip_h": false,
 		"max_health": 15,
-		"position_x": -2.0,
-		"position_y": 6.90019607543945
+		"position_x": 179.637283325195,
+		"position_y": 38.8519973754883
 	},
 	"scene": "res://Scenes/Game.tscn",
-	"timestamp": "2026-06-03T14:45:45"
+	"timestamp": "2026-06-10T14:54:04"
 }
