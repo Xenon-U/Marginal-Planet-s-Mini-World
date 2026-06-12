@@ -544,7 +544,7 @@ position = Vector2(1774, -47)
 [node name="Plantforms" type="Node" parent="." unique_id=1029065614]
 
 [node name="草地平台" parent="Plantforms" unique_id=970283205 instance=ExtResource("3_j5yw3")]
-position = Vector2(32, -40)
+position = Vector2(27, -44)
 collision_mask = 2
 
 [node name="草地平台2" parent="Plantforms" unique_id=194642634 instance=ExtResource("3_j5yw3")]

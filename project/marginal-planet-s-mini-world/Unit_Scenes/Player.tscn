@@ -371,6 +371,9 @@ radius = 5.0990195
 radius = 4.9999995
 height = 16.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qom7c"]
+size = Vector2(9, 10)
+
 [node name="Player" type="CharacterBody2D" unique_id=2067022172]
 z_index = 5
 collision_layer = 2
@@ -402,5 +405,13 @@ max_health = 15
 
 [node name="HitstunTimer" type="Timer" parent="." unique_id=1391397425]
 one_shot = true
+
+[node name="EnemyAttackReceiver" type="Area2D" parent="." unique_id=1714163326]
+collision_layer = 2
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyAttackReceiver" unique_id=12171918]
+position = Vector2(-0.5, -5)
+shape = SubResource("RectangleShape2D_qom7c")
 
 [connection signal="body_entered" from="Hitbox" to="Hitbox" method="_on_body_entered"]

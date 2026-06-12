@@ -299,3 +299,8 @@ func _on_health_changed(current: int, max_hp: int):
 	print("更新血条: ", current, "/", max_hp)
 	if hud:
 		hud.set_health(current, max_hp)
+		
+func _on_enemy_attack_entered(body):
+	if body.has_method("take_damage"):
+		var dir = sign(body.global_position.x - global_position.x)
+		body.take_damage(body.base_attack, dir)
