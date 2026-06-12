@@ -1,0 +1,99 @@
+[gd_scene format=3 uid="uid://l27jvn66uq6w"]
+
+[ext_resource type="Texture2D" uid="uid://31ofagqi00we" path="res://Assests/sprites/slime_green.png" id="1_6jhk5"]
+[ext_resource type="Script" path="res://Scripts/health_component.gd" id="1_fyfer"]
+[ext_resource type="Script" uid="uid://dya2kw65gie70" path="res://Scripts/史莱姆.gd" id="1_rkdmm"]
+[ext_resource type="PackedScene" uid="uid://hd1qbfterrhy" path="res://Scenes/killzone.tscn" id="2_rkdmm"]
+[ext_resource type="Script" path="res://Scripts/hurtboxslime.gd" id="3_i3gbc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fd3ox"]
+size = Vector2(12, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7n7ro"]
+atlas = ExtResource("1_6jhk5")
+region = Rect2(48, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fd3ox"]
+atlas = ExtResource("1_6jhk5")
+region = Rect2(72, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fyfer"]
+atlas = ExtResource("1_6jhk5")
+region = Rect2(0, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i3gbc"]
+atlas = ExtResource("1_6jhk5")
+region = Rect2(24, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0jtt0"]
+atlas = ExtResource("1_6jhk5")
+region = Rect2(48, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1vw0i"]
+atlas = ExtResource("1_6jhk5")
+region = Rect2(72, 24, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7n7ro"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7n7ro")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fd3ox")
+}],
+"loop": false,
+"name": &"受击",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fyfer")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i3gbc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0jtt0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1vw0i")
+}],
+"loop": true,
+"name": &"待机",
+"speed": 10.0
+}]
+
+[node name="史莱姆" type="Node2D" unique_id=1517221400]
+script = ExtResource("1_rkdmm")
+
+[node name="hurtbox" parent="." unique_id=1387279349 instance=ExtResource("2_rkdmm")]
+script = ExtResource("3_i3gbc")
+damage = 1
+
+[node name="伤害判定区域" type="CollisionShape2D" parent="hurtbox" unique_id=1982872715]
+position = Vector2(0, 5)
+shape = SubResource("RectangleShape2D_fd3ox")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=655287384]
+sprite_frames = SubResource("SpriteFrames_7n7ro")
+animation = &"待机"
+autoplay = "待机"
+flip_h = true
+
+[node name="RayCastLeft" type="RayCast2D" parent="." unique_id=1813526337]
+position = Vector2(0, 7)
+target_position = Vector2(-7, 0)
+
+[node name="RayCastRight" type="RayCast2D" parent="." unique_id=78284236]
+position = Vector2(0, 7)
+target_position = Vector2(8, 0)
+
+[node name="RayCastDown" type="RayCast2D" parent="." unique_id=1178586067]
+target_position = Vector2(0, 20)
+
+[node name="HealthComponent" type="Node" parent="." unique_id=188717189]
+script = ExtResource("1_fyfer")
+
+[node name="HitstunTimer" type="Timer" parent="." unique_id=384428918]
+one_shot = true
