@@ -184,7 +184,7 @@ texture = ExtResource("2_gl6un")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_fgofq")
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_b2bpf"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3so38"]
 texture = ExtResource("2_gl6un")
 0:0/0 = 0
 1:0/0 = 0
@@ -315,7 +315,7 @@ texture = ExtResource("2_gl6un")
 3:15/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_7lihs"]
-sources/0 = SubResource("TileSetAtlasSource_b2bpf")
+sources/0 = SubResource("TileSetAtlasSource_3so38")
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_7lihs"]
 distance = -100.0

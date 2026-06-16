@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dospeveoeyed3" path="res://Assests/sprites/platforms.png" id="2_88nhj"]
 [ext_resource type="PackedScene" uid="uid://c56jmjqx12sjc" path="res://Scenes/coin.tscn" id="3_l4hoq"]
 [ext_resource type="PackedScene" uid="uid://l27jvn66uq6w" path="res://Scenes/史莱姆.tscn" id="4_l4hoq"]
+[ext_resource type="PackedScene" uid="uid://jp4dxxxbnsxs" path="res://Unit_Scenes/Player.tscn" id="5_2xfgm"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ptli6"]
 texture = ExtResource("1_tnxn3")
@@ -576,3 +577,13 @@ position = Vector2(1506, -1169)
 
 [node name="史莱姆" parent="." unique_id=1517221400 instance=ExtResource("4_l4hoq")]
 position = Vector2(1600, -1262)
+
+[node name="Player" parent="." unique_id=2067022172 instance=ExtResource("5_2xfgm")]
+position = Vector2(-338, 41)
+
+[node name="Camera2D" type="Camera2D" parent="Player" unique_id=1743739968]
+position = Vector2(0, -10)
+zoom = Vector2(4, 4)
+limit_bottom = 95
+limit_smoothed = true
+position_smoothing_enabled = true
