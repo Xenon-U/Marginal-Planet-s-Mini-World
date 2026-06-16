@@ -1,6 +1,6 @@
 [gd_scene format=4 uid="uid://cwolpwxtttouh"]
 
-[ext_resource type="Script" uid="uid://undfmlqm0ehc" path="res://game_manager.gd" id="1_2irst"]
+[ext_resource type="Script" uid="uid://undfmlqm0ehc" path="res://Scripts/game_manager.gd" id="1_2irst"]
 [ext_resource type="PackedScene" uid="uid://jp4dxxxbnsxs" path="res://Unit_Scenes/Player.tscn" id="1_iukft"]
 [ext_resource type="FontFile" uid="uid://dkug4nfstir37" path="res://Assests/fonts/PixelOperator8-Bold.ttf" id="2_bf53h"]
 [ext_resource type="Texture2D" uid="uid://cftndcl7l6sqc" path="res://Assests/sprites/world_tileset.png" id="2_gl6un"]
@@ -11,6 +11,7 @@
 [ext_resource type="FontFile" uid="uid://b0skkntbsnpc0" path="res://Assests/fonts/PixelOperator8.ttf" id="7_fgofq"]
 [ext_resource type="PackedScene" uid="uid://bgk7cnjxrxcot" path="res://Scenes/hud.tscn" id="10_71axn"]
 [ext_resource type="PackedScene" uid="uid://bdb5h43rerp2u" path="res://界面/pause.tscn" id="11_dahhg"]
+[ext_resource type="PackedScene" uid="uid://bx63bbc36vyny" path="res://Unit_Scenes/war_machine_boss.tscn" id="12_3so38"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fgofq"]
 texture = ExtResource("2_gl6un")
@@ -379,6 +380,7 @@ horizontal_alignment = 1
 autowrap_mode = 2
 
 [node name="Player" parent="." unique_id=2067022172 instance=ExtResource("1_iukft")]
+position = Vector2(0, -7)
 
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=1002408032]
 position = Vector2(0, -10)
@@ -577,3 +579,6 @@ theme_override_font_sizes/font_size = 8
 text = "You made it"
 
 [node name="Pause" parent="." unique_id=1259339767 instance=ExtResource("11_dahhg")]
+
+[node name="WarMachineBoss" parent="." unique_id=729716493 instance=ExtResource("12_3so38")]
+position = Vector2(2319, 38)

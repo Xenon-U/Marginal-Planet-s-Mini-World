@@ -1,0 +1,88 @@
+[gd_scene format=3 uid="uid://5gh56qosjvv8"]
+
+[ext_resource type="Script" uid="uid://cbabw3g5ii4it" path="res://Scripts/projectile.gd" id="1_62dsw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_62dsw"]
+size = Vector2(12, 12)
+
+[node name="Projectile" type="Area2D" unique_id=104396257]
+collision_layer = 16
+collision_mask = 3
+script = ExtResource("1_62dsw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1252179947]
+shape = SubResource("RectangleShape2D_62dsw")
+
+[node name="Visual" type="Node2D" parent="." unique_id=266755265]
+
+[node name="ColorRect" type="ColorRect" parent="Visual" unique_id=1814211433]
+z_index = 100
+offset_left = -6.0
+offset_top = -6.0
+offset_right = -2.0
+offset_bottom = -2.0
+color = Color(0.96862745, 0.8901961, 0.34509805, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="Visual" unique_id=1022971594]
+z_index = 100
+offset_left = -2.0
+offset_top = -6.0
+offset_right = 2.0
+offset_bottom = -2.0
+color = Color(0.96862745, 0.8901961, 0.34509805, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="Visual" unique_id=726013481]
+z_index = 100
+offset_left = 2.0
+offset_top = -6.0
+offset_right = 6.0
+offset_bottom = -2.0
+color = Color(0.96862745, 0.8901961, 0.34509805, 1)
+
+[node name="ColorRect4" type="ColorRect" parent="Visual" unique_id=1226470190]
+z_index = 100
+offset_left = -6.0
+offset_top = -2.0
+offset_right = -2.0
+offset_bottom = 2.0
+color = Color(0.96862745, 0.8901961, 0.34509805, 1)
+
+[node name="ColorRect5" type="ColorRect" parent="Visual" unique_id=1849376966]
+z_index = 100
+offset_left = -2.0
+offset_top = -2.0
+offset_right = 2.0
+offset_bottom = 2.0
+color = Color(0.8392157, 0.54509807, 0, 1)
+
+[node name="ColorRect6" type="ColorRect" parent="Visual" unique_id=628651661]
+z_index = 100
+offset_left = 2.0
+offset_top = -2.0
+offset_right = 6.0
+offset_bottom = 2.0
+color = Color(0.96862745, 0.8901961, 0.34509805, 1)
+
+[node name="ColorRect7" type="ColorRect" parent="Visual" unique_id=674479763]
+z_index = 100
+offset_left = -6.0
+offset_top = 2.0
+offset_right = -2.0
+offset_bottom = 6.0
+color = Color(0.96862745, 0.8901961, 0.34509805, 1)
+
+[node name="ColorRect8" type="ColorRect" parent="Visual" unique_id=1359367101]
+z_index = 100
+offset_left = -2.0
+offset_top = 2.0
+offset_right = 2.0
+offset_bottom = 6.0
+color = Color(0.96862745, 0.8901961, 0.34509805, 1)
+
+[node name="ColorRect9" type="ColorRect" parent="Visual" unique_id=1715665257]
+z_index = 100
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 6.0
+offset_bottom = 6.0
+color = Color(0.96862745, 0.8901961, 0.34509805, 1)

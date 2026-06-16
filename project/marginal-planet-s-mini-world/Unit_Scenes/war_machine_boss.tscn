@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bx63bbc36vyny"]
 
 [ext_resource type="Script" uid="uid://b3sarv4k4g1em" path="res://Scripts/war_machine_boss.gd" id="1_018yh"]
+[ext_resource type="PackedScene" uid="uid://5gh56qosjvv8" path="res://Scenes/BossProjectile.tscn" id="2_2fbf4"]
 [ext_resource type="Texture2D" uid="uid://b6m35tqjjqygf" path="res://Assests/sprites/war_machine_boss.PNG" id="2_vb7jb"]
 [ext_resource type="Script" uid="uid://d0j6xyivfgd0f" path="res://Scripts/health_component.gd" id="3_2fbf4"]
 [ext_resource type="Script" uid="uid://bv62balxc6akp" path="res://Scripts/hurtboxslime.gd" id="3_85qi5"]
@@ -287,6 +288,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c1s61"]
 size = Vector2(40, 54)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2fbf4"]
+size = Vector2(816, 102)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_buo6p"]
 size = Vector2(60, 55)
 
@@ -294,15 +298,16 @@ size = Vector2(60, 55)
 size = Vector2(44, 41)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4ybjo"]
-size = Vector2(18, 41)
+size = Vector2(20, 45)
 
 [node name="WarMachineBoss" type="CharacterBody2D" unique_id=729716493]
+collision_layer = 4
 script = ExtResource("1_018yh")
+projectile_scene = ExtResource("2_2fbf4")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1903332342]
 sprite_frames = SubResource("SpriteFrames_rx7pk")
-animation = &"melee_attack"
-frame_progress = 0.4262686
+animation = &"ranged_attack"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1321670383]
 position = Vector2(4, 4)
@@ -313,8 +318,12 @@ script = ExtResource("3_2fbf4")
 max_health = 30
 
 [node name="DetectionArea" type="Area2D" parent="." unique_id=541053977]
+collision_layer = 4
+collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea" unique_id=1688086083]
+position = Vector2(1, -19)
+shape = SubResource("RectangleShape2D_2fbf4")
 
 [node name="Hurtbox" type="Area2D" parent="." unique_id=107165827]
 script = ExtResource("3_85qi5")
@@ -324,6 +333,8 @@ position = Vector2(2, 4.5)
 shape = SubResource("RectangleShape2D_buo6p")
 
 [node name="BodyHitbox" type="Area2D" parent="." unique_id=419577916]
+collision_layer = 16
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BodyHitbox" unique_id=1143288180]
 position = Vector2(8, 11)
@@ -337,7 +348,7 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MeleeHitbox" unique_id=585434539]
 light_mask = 3
 visibility_layer = 17
-position = Vector2(-23, 7.5)
+position = Vector2(-24, 9.5)
 shape = SubResource("RectangleShape2D_4ybjo")
 disabled = true
 
@@ -345,4 +356,9 @@ disabled = true
 
 [node name="EnterCombatSound" type="AudioStreamPlayer" parent="." unique_id=486349613]
 
-[node name="ProjectileSpawnPoint" type="Marker2D" parent="." unique_id=1529280735]
+[node name="ProjectileSpawnPoint" type="Marker2D" parent="." unique_id=1654788368]
+position = Vector2(-34, 11)
+
+[node name="AttackCooldown" type="Timer" parent="." unique_id=1262848295]
+wait_time = 0.7
+one_shot = true

@@ -304,3 +304,7 @@ func _on_enemy_attack_entered(body):
 	if body.has_method("take_damage"):
 		var dir = sign(body.global_position.x - global_position.x)
 		body.take_damage(body.base_attack, dir)
+	# body 是攻击碰撞体，我们需要对玩家自身造成伤害
+	if body.has_method("get_damage_info"):  # 或者直接在Boss那边设置伤害值
+		var dmg = body.damage_value
+		take_damage(dmg, (global_position - body.global_position).x)
