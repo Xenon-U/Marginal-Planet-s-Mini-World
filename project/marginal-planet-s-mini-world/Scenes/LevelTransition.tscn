@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://cxnlw1v1n7rig"]
+
+[ext_resource type="Script" uid="uid://c080r0kxyther" path="res://Scripts/level_transition.gd" id="1_v7vtg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_avvtt"]
+size = Vector2(24, 22)
+
+[node name="LevelTransition" type="Area2D" unique_id=639002070]
+collision_mask = 2
+script = ExtResource("1_v7vtg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=302078602]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_avvtt")
+
+[node name="下一个演示场景" type="Label" parent="." unique_id=11817801]
+offset_left = -15.0
+offset_top = -12.0
+offset_right = 17.0
+offset_bottom = 15.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 8
+text = "下一个
+演示场景"
