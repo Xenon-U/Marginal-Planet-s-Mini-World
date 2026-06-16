@@ -405,9 +405,6 @@ region_rect = Rect2(16, 0, 32, 10)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Midground/Camera2D/Platform" unique_id=975589429]
 one_way_collision = true
 
-[node name="Coin" parent="." unique_id=247672832 instance=ExtResource("3_l4hoq")]
-position = Vector2(1270, -1147)
-
 [node name="Platforms" type="Sprite2D" parent="." unique_id=305732055]
 position = Vector2(1844, -1200.0001)
 scale = Vector2(1.2499998, -1.5749872)
