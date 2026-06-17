@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://675q7h1j7icc" path="res://Scripts/hud.gd" id="1_e0onf"]
 [ext_resource type="FontFile" uid="uid://dkug4nfstir37" path="res://Assests/fonts/PixelOperator8-Bold.ttf" id="2_fccik"]
+[ext_resource type="PackedScene" uid="uid://hd1qbfterrhy" path="res://Scenes/killzone.tscn" id="3_bjfho"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e0onf"]
 border_width_left = 2
@@ -12,6 +13,9 @@ border_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fccik"]
 bg_color = Color(0, 0, 0, 0.49019608)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_6fbih"]
+distance = -100.0
 
 [node name="HUD" type="CanvasLayer" unique_id=1054817224]
 script = ExtResource("1_e0onf")
@@ -138,6 +142,11 @@ offset_top = 14.0
 offset_right = 1266.0
 offset_bottom = 45.0
 text = "💾"
+
+[node name="Killzone" parent="." unique_id=1387279349 instance=ExtResource("3_bjfho")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone" unique_id=70496941]
+shape = SubResource("WorldBoundaryShape2D_6fbih")
 
 [connection signal="pressed" from="SavePanel/VBoxContainer/QuickSaveSlot" to="." method="_on_quick_save_slot_pressed"]
 [connection signal="pressed" from="SavePanel/VBoxContainer/SaveSlot1" to="." method="_on_save_slot_1_pressed"]
