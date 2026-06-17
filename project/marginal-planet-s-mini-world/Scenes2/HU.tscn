@@ -1,0 +1,142 @@
+[gd_scene format=3 uid="uid://djeeauh60eo3y"]
+
+[ext_resource type="PackedScene" uid="uid://bgk7cnjxrxcot" path="res://Scenes/hud.tscn" id="1_a0eqp"]
+[ext_resource type="FontFile" uid="uid://dkug4nfstir37" path="res://Assests/fonts/PixelOperator8-Bold.ttf" id="2_ri4yt"]
+[ext_resource type="PackedScene" uid="uid://hd1qbfterrhy" path="res://Scenes/killzone.tscn" id="3_7befb"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_etxwx"]
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h4wso"]
+bg_color = Color(0, 0, 0, 0.49019608)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_k0lb0"]
+distance = -100.0
+
+[node name="HUD" type="CanvasLayer" unique_id=1283014522]
+
+[node name="HUD" parent="." unique_id=1054817224 instance=ExtResource("1_a0eqp")]
+
+[node name="DeathScreen2" type="Control" parent="HUD" unique_id=1283614792]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BlackOverlay" type="ColorRect" parent="HUD/DeathScreen2" unique_id=1398804447]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.05, 0.05, 0.05, 1)
+
+[node name="YouDiedLabel" type="Label" parent="HUD/DeathScreen2" unique_id=557671109]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -225.0
+offset_top = -30.5
+offset_right = 225.0
+offset_bottom = 30.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0, 0, 0.8627451)
+theme_override_fonts/font = ExtResource("2_ri4yt")
+theme_override_font_sizes/font_size = 60
+text = "You Died"
+
+[node name="RetryButton" type="Button" parent="HUD/DeathScreen2" unique_id=1446769544]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -31.0
+offset_top = -181.0
+offset_right = 19.0
+offset_bottom = -150.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Retry"
+
+[node name="HealthBar" type="Control" parent="HUD/DeathScreen2" unique_id=1206747093]
+anchors_preset = 0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 230.0
+offset_bottom = 50.0
+
+[node name="Background" type="Panel" parent="HUD/DeathScreen2/HealthBar" unique_id=1803023307]
+layout_mode = 0
+offset_right = 210.0
+offset_bottom = 30.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_etxwx")
+
+[node name="Fill" type="ColorRect" parent="HUD/DeathScreen2/HealthBar" unique_id=579518481]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 202.0
+offset_bottom = 22.0
+color = Color(1, 0, 0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="HUD/DeathScreen2/HealthBar/Fill" unique_id=1408744659]
+
+[node name="HP" type="Label" parent="HUD/DeathScreen2/HealthBar" unique_id=1459847402]
+layout_mode = 0
+offset_left = 7.0
+offset_right = 47.0
+offset_bottom = 23.0
+text = "HP"
+
+[node name="SavePanel" type="Panel" parent="." unique_id=932988589]
+offset_left = 200.0
+offset_top = 200.0
+offset_right = 500.0
+offset_bottom = 400.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_h4wso")
+
+[node name="Label" type="Label" parent="SavePanel" unique_id=1026698842]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "选择存档位"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SavePanel" unique_id=1336625492]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="QuickSaveSlot" type="Button" parent="SavePanel/VBoxContainer" unique_id=426366044]
+layout_mode = 2
+text = "QuickSave"
+
+[node name="SaveSlot1" type="Button" parent="SavePanel/VBoxContainer" unique_id=899759022]
+layout_mode = 2
+
+[node name="SaveSlot2" type="Button" parent="SavePanel/VBoxContainer" unique_id=1858540472]
+layout_mode = 2
+
+[node name="SaveSlot3" type="Button" parent="SavePanel/VBoxContainer" unique_id=1678007453]
+layout_mode = 2
+
+[node name="CloseButton" type="Button" parent="SavePanel/VBoxContainer" unique_id=382972099]
+layout_mode = 2
+text = "CLOSE"
+
+[node name="Killzone" parent="." unique_id=1387279349 instance=ExtResource("3_7befb")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone" unique_id=198828528]
+shape = SubResource("WorldBoundaryShape2D_k0lb0")

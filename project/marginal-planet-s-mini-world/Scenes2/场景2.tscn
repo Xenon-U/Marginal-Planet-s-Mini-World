@@ -5,6 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://c56jmjqx12sjc" path="res://Scenes/coin.tscn" id="3_l4hoq"]
 [ext_resource type="PackedScene" uid="uid://l27jvn66uq6w" path="res://Scenes/史莱姆.tscn" id="4_l4hoq"]
 [ext_resource type="PackedScene" uid="uid://jp4dxxxbnsxs" path="res://Unit_Scenes/Player.tscn" id="5_2xfgm"]
+[ext_resource type="PackedScene" uid="uid://hd1qbfterrhy" path="res://Scenes/killzone.tscn" id="6_27v21"]
+[ext_resource type="PackedScene" uid="uid://bgk7cnjxrxcot" path="res://Scenes/hud.tscn" id="6_u1tj3"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ptli6"]
 texture = ExtResource("1_tnxn3")
@@ -511,6 +513,9 @@ _data = {
 &"move": SubResource("Animation_l4hoq")
 }
 
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_u1tj3"]
+distance = -100.0
+
 [node name="场景2" type="Node2D" unique_id=1193725792]
 
 [node name="Midground" type="TileMapLayer" parent="." unique_id=912586404]
@@ -587,3 +592,10 @@ zoom = Vector2(4, 4)
 limit_bottom = 95
 limit_smoothed = true
 position_smoothing_enabled = true
+
+[node name="HUD" parent="Player" unique_id=1054817224 instance=ExtResource("6_u1tj3")]
+
+[node name="Killzone" parent="." unique_id=1387279349 instance=ExtResource("6_27v21")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone" unique_id=991266195]
+shape = SubResource("WorldBoundaryShape2D_u1tj3")
